@@ -10,7 +10,7 @@
     ignore_errors: true #boolean datatype
 
   - name: task 2, printing rc
-    ansible.default.debug:
+    ansible.builtin.debug:
       msg: "output value is {{avaliable}}"  
 
   - name: task 3, reading rc
