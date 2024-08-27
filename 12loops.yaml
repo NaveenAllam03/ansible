@@ -7,6 +7,6 @@
   - name: task1, creating loops
     ansible.builtin.debug:        # in ansible variables are called using {{<variable-name>}}
       msg: "installing {{item}}"   # item is the default keyword of ansible to execute a loop
-    loops:                        # specifying loops
+    loop:                        # specifying loops
     - git 
     - jq
