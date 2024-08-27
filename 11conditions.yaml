@@ -4,9 +4,20 @@
   hosts: web
   become: yes
   tasks:
-  - name: creating user
+  - name: task 1, creating user
     ansible.builtin.command: id roboshop
     register: avaliable
     ignore_errors: true #boolean datatype
 
-    
+  - name: task 2, printing rc
+    ansible.default.debug:
+      msg: "output value is {{avaliable}}"  
+
+  - name: task 3, reading rc
+    ansible.builtin.debug:
+      msg: "printing {{avaliable.rc}}"    
+
+  - name: task 4, creating user    
+    ansible.builtin.debug:
+      user: roboshop
+    when: avaliable.rc != 0  
