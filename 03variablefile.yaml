@@ -8,5 +8,5 @@
   tasks:
   - name: task1
     ansible.builtin.debug:
-      msg: "established{{estd}}"
+      msg: "established {{estd}}"
       
