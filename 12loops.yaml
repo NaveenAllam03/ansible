@@ -8,5 +8,5 @@
     ansible.builtin.debug:        # in ansible variables are called using {{<variable-name>}}
       name: "{{item}}"   # item is the default keyword of ansible to execute a loop
     loop:                        # specifying loops
-    - {name: 'git' , state: 'present'}
-    - {name: 'jd' , state: 'absent'}
+    - {name: 'git',state: 'present'}
+    - {name: 'jq',state: 'absent'}
