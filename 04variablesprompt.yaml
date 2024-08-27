@@ -13,4 +13,4 @@
   tasks:
   - name: check prompts
     ansible.builtin.debug:
-      msg: "enter passwd {{name}}"
+      msg: "enter passwd {{enter name}}"
