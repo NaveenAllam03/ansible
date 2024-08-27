@@ -1,0 +1,9 @@
+---
+
+- name: variable checking with inventory
+  hosts: localhosts
+  become: yes
+  tasks:
+  - name: inventory check for variables
+    ansible.builtin.debug:
+      msg: "hostel name is {{hello}}"
