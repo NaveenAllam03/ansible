@@ -5,9 +5,9 @@
   become: yes
   tasks:
   - name: task1, creating loops
-    ansible.builtin.debug:        # in ansible variables are called using {{<variable-name>}}
+    ansible.builtin.package:        # in ansible variables are called using {{<variable-name>}}
       name: "{{item.name}}"       # item is the default keyword of ansible to execute a loop
       state: "{{item.state}}"
     loop:                        # specifying loops
-    - {name: 'git',state: 'present'}
-    - {name: 'jq',state: 'absent'}
+    - {name: 'git', state: 'present'}
+    - {name: 'jq', state: 'absent'}
