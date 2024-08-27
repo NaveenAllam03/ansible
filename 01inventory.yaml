@@ -1,7 +1,7 @@
 ---
 
 - name: variable checking with inventory
-  hosts: localhosts
+  hosts: localhost
   become: yes
   tasks:
   - name: inventory check for variables
