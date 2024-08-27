@@ -18,6 +18,6 @@
       msg: "printing {{avaliable.rc}}"    
 
   - name: task 4, creating user    
-    ansible.builtin.debug:
+    ansible.builtin.user:
       user: roboshop
     when: avaliable.rc != 0  
