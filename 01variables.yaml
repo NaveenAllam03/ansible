@@ -8,12 +8,12 @@
     estd: "2018"
   become: yes  
   tasks: # tasks
-  - name: check variables at play level
+  - name: task1, check variables at play level
     ansible.builtin.debug:
       msg: "hostel name is {{hello}}"  
-  - name: check variables at play level
+  - name: task2, check variables at play level
     ansible.builtin.debug:
       msg: "owner name is {{owner}}" 
-  - name: check variables at play level
+  - name: task3, check variables at play level
     ansible.builtin.debug:
       msg: "estd date is {{estd}}"       
