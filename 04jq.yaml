@@ -1,10 +1,10 @@
 ---
 
-- name: installing jq
+- name: installing jq #installing jq tool at webhost level
   hosts: web
   become: yes
   tasks:
-  - name: js installation
+  - name: jq installation
     ansible.builtin.package:
       name: jq
       state: present 

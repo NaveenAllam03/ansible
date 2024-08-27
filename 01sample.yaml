@@ -1,4 +1,7 @@
-- name: test 1
+--- # defines start of yaml file and end of it. 
+    # because you can write multiple yaml files in one file
+
+- name: test 1  # - represents start of play and you can write multipleplays within it
   hosts: localhost
   tasks:
   - name: test 1

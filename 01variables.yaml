@@ -2,18 +2,18 @@
 
 - name: checking variables at both play and task levels #play
   hosts: localhost
-  vars:  # variables defining at play level
+  vars:                                        # variables defining at play level
     hello: "hanuman boys hostel"
     owner: "Nagabhushanam"
     estd: "2018"
   become: yes  
-  tasks: # tasks
+  tasks:                                       # tasks
   - name: task1, check variables at play level
-    ansible.builtin.debug:
-      msg: "hostel name is {{hello}}"  
+    ansible.builtin.debug:                     # debug used to correct mistakes
+      msg: "hostel name is {{hello}}"          #calling variables
   - name: task2, check variables at play level
     ansible.builtin.debug:
-      msg: "owner name is {{owner}}" 
+      msg: "owner name is {{owner}}"           #calling variables
   - name: task3, check variables at play level
     ansible.builtin.debug:
-      msg: "estd date is {{estd}}"       
+      msg: "estd date is {{estd}}"             #calling variables  
