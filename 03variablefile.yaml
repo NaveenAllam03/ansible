@@ -2,7 +2,7 @@
 
 - name: checking variables using files
   hosts: localhost
-  vars_files:
+  vars_files: # this is important, specifiy the file name of variables here for ansible to refer and do task.
   - 03varfile.yaml
   become: yes
   tasks:
