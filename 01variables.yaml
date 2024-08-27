@@ -10,4 +10,4 @@
   tasks:
   - name: check variables at play level
     ansible.builtin.debug:
-      msg: "hostel name is {{name}}"  
+      msg: "hostel name is {{owner}}"  
