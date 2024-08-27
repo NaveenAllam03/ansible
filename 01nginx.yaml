@@ -1,7 +1,7 @@
 ---
 
 - name: nginx installation and running
-  hosts: localhost
+  hosts: localhost #installing only on local host
   become: yes
   tasks:
   - name: install nginx
