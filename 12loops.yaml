@@ -6,7 +6,7 @@
   tasks:
   - name: task1, creating loops
     ansible.builtin.package:        # in ansible variables are called using {{<variable-name>}}
-      name: "{{item.name}}"       # item is the default keyword of ansible to execute a loop
+      name: "{{item.name}}"         # item is the default keyword of ansible to execute a loop
       state: "{{item.state}}"
     loop:                        # specifying loops
     - {name: 'git', state: 'present'}

@@ -1,5 +1,11 @@
 ---
 
+###############
+# ansible.builtin.command acts a read command here
+# register - grabs the value and keeps it in avaliable variable.
+#
+###############
+
 - name: condition
   hosts: web
   become: yes
