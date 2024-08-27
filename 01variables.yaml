@@ -1,13 +1,13 @@
 ---
 
-- name: checking variables at both play and task levels
+- name: checking variables at both play and task levels #play
   hosts: localhost
-  become: yes
-  vars:
+  vars:  # variables defining at play level
     hello: "hanuman boys hostel"
     owner: "Nagabhushanam"
     estd: "2018"
-  tasks:
+  become: yes  
+  tasks: # tasks
   - name: check variables at play level
     ansible.builtin.debug:
       msg: "hostel name is {{hello}}"  
