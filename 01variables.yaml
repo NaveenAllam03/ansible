@@ -11,3 +11,9 @@
   - name: check variables at play level
     ansible.builtin.debug:
       msg: "hostel name is {{hello}}"  
+  - name: check variables at play level
+    ansible.builtin.debug:
+      msg: "owner name is {{owner}}" 
+  - name: check variables at play level
+    ansible.builtin.debug:
+      msg: "estd date is {{estd}}"       
