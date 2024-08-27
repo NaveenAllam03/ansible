@@ -7,17 +7,17 @@
   - name: task 1, creating user
     ansible.builtin.command: id roboshop
     register: avaliable
-    ignore_errors: true #boolean datatype
+    ignore_errors: true          #boolean datatype
 
-  - name: task 2, printing rc
+  - name: task 2, printing rc    #printing return code
     ansible.builtin.debug:
       msg: "output value is {{avaliable}}"  
 
-  - name: task 3, reading rc
+  - name: task 3, reading rc     # reading return code status
     ansible.builtin.debug:
       msg: "printing {{avaliable.rc}}"    
 
   - name: task 4, creating user    
-    ansible.builtin.user:
+    ansible.builtin.user:        #use module
       user: roboshop
-    when: avaliable.rc != 0  
+    when: avaliable.rc != 0      # when condition, onlu condition in Ansible, yet very powerful
