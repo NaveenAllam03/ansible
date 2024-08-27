@@ -1,0 +1,26 @@
+---
+
+- name: datatypes in ansible
+  hosts: localhost
+  vars:
+    user: randomuser
+    names:
+    - name1
+    - name2
+    - name3
+    - name4
+    - this is list data type in ansible
+    technologies:
+      Programming: java.
+      queuing service: Apache kafka.
+      tools: ansible is a tool.
+  become: yes
+  tasks:
+  - name: task 1, list datatypes
+    ansible.builtin.debug:
+      msg: "calling lists {{names}}"
+  - name: task 2, map datatypes
+    ansible.builtin.debug:
+      msg: "calling maps {{technologies}}" 
+         
+      
