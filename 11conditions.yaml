@@ -1,0 +1,12 @@
+---
+
+- name: condition
+  hosts: web
+  become: yes
+  tasks:
+  - name: creating user
+    ansible.builtin.command: id roboshop
+    register: avaliable
+    ignore_errors: true #boolean datatype
+
+    
