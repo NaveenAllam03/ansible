@@ -9,7 +9,8 @@
       town: "Ongole"
       dist: "prakasham"
     ansible.builtin.debug:
-      #msg: "hello {{town}}" 
+      msg: "hello {{town}}" # if u dont call variables they will return hello world!
+
   - name: task2, defining variables 
     vars:
       town: "kandukur"

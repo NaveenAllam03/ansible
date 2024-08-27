@@ -1,0 +1,12 @@
+---
+
+- name: checking variables using files
+  hosts: localhost
+  vars_file:
+  - 03varfile.yaml
+  become: yes
+  tasks:
+  - name: task1
+    ansible.builtin.debug:
+      msg: "established{{estd}}"
+      
