@@ -4,10 +4,10 @@
   hosts: localhost
   become: yes
   vars:
-    name: "hanuman boys hostel"
+    hello: "hanuman boys hostel"
     owner: "Nagabhushanam"
     estd: "2018"
   tasks:
   - name: check variables at play level
     ansible.builtin.debug:
-      msg: "hostel name is {{owner}}"  
+      msg: "hostel name is {{hello}}"  
