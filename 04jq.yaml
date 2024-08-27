@@ -1,0 +1,9 @@
+---
+- name: installing jq
+  hosts: web
+  become: yes
+  tasks:
+  - name: js installation
+  ansible.builtin.package:
+    name: jq
+    state: present 
