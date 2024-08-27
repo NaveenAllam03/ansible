@@ -2,7 +2,7 @@
 
 - name: checking variables using files
   hosts: localhost
-  vars_file:
+  vars_files:
   - 03varfile.yaml
   become: yes
   tasks:
