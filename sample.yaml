@@ -1,3 +1,18 @@
+################
+# Ansible always start with ( - ) or ( --- ) those represent start of an yaml file
+# we can also write nested lists
+# Ansible playbook is a list of plays
+# we can write multiple yamls in one file, but that is not a good practice
+#
+#
+################
 ---
-- name : ping
+- name: ping
+  hosts: localhosts  # hosts are nodes in inventory file. group nodes and give them a name. enter name in hosts section
+  become: yes
+  tasks:
+  - name: ping the hosts
+    ansible.builtin.service:
+
+
   
