@@ -4,13 +4,13 @@
   hosts: localhost
   become: yes
   vars_prompt:
-  - name: enter name
+  - name: US
     prompt: please enter
     private: false # everyone sees what we enter
-  - name: enter passwd
+  - name: UP
     prompt: passwd
     private: true # to enter passwd in secret
   tasks:
   - name: check prompts
     ansible.builtin.debug:
-      msg: "enter passwd {{enter name}}"
+      msg: "enter passwd {{US}}, enter passwd {{UP}}"
