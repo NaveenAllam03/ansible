@@ -1,0 +1,31 @@
+---
+
+- name: installing and configuring redis
+  hosts: redis
+  become: yes
+  tasks:
+  - name: connecting to redis repo and getting info to download redis
+    ansible.builtin.dnf:
+      name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      state: present
+      gpg_check: true
+
+  - name: enabling and installing specific version
+    ansible.builtin.command: dnf module enable redis:remi 6.2
+
+  - name: installing redis
+    ansible.builtin.dnf:
+      name: redis 
+      state: present
+
+  - name: replacing local host IP
+    ansible.builtin.replace:
+      path: /etc/redis.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'         
+
+  - name: enabling and restarting redis
+    ansible.builtin.service:
+      name: redis
+      state: started
+      enabled: yes    

@@ -1,0 +1,32 @@
+---
+# ansible playbook to install and configure mongodb
+- name: install mongodb and configure
+  hostes: mongodb
+  become: yes
+  tasks:
+  - name: coping mongo repo
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo
+
+  - name: installing mongodb
+    ansible.builtin.dnf:
+      name: mongodb-org
+      state: present
+
+  - name: enabling and starting mongodb
+    ansible.builtin.service:
+      name: mongodb
+      state: started
+      enabled: yes
+
+  - name: enabling all connections to mongodb
+    ansible.builtin.replace:
+      path: /etc/mongodb.conf 
+      redexp: '127.0.0.1'
+      replace: '0.0.0.0'   
+
+  - name: restarting service 
+    ansible.builtin.service:
+      name: mongod
+      state: restarted    

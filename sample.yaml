@@ -8,11 +8,11 @@
 ################
 ---
 - name: ping
-  hosts: localhosts  # hosts are nodes in inventory file. group nodes and give them a name. enter name in hosts section
-  become: yes
-  tasks:
-  - name: ping the hosts
-    ansible.builtin.service:
+hosts: localhosts  # hosts are nodes in inventory file. group nodes and give them a name. enter name in hosts section
+become: yes
+tasks:
+- name: ping the hosts
+ansible.builtin.service:
 
 
   

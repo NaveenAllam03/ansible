@@ -1,0 +1,85 @@
+---
+# playbook for catalogut module
+# catalogue application is built on nodejs 
+# so, download every single dependency and configure the catalogue app
+
+- name: installing catalogue module and configuring it 
+  hosts: catalogue
+  become: yes
+  tasks:
+  - name: disabling and enabling nodejs with specific version 
+    ansible.default.shell: dnf module disable nodejs -y ; dnf module enable nodejs:18 -y
+    # shell --> it logs in into shell and does the job, while command only does it from outside
+
+  - name: downloading nodejs  
+    ansible.builtin.dnf:
+      name: nodejs
+      state: present
+
+  - name: adding roboshop user    
+    ansible.builtin.user:
+      name: roboshop
+
+  - name: creating a directory 
+    ansible.builtin.file:
+      path: /app 
+      state: directory
+
+  - name: downloading catalogue code from s3 
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip   
+      dest: /tmp
+
+  - name: unzipping the downloaded file
+    ansible.builtin.unarchive:
+      src: /tmp/catalogue.zip
+      dest: /app
+      remote_src: yes    
+      
+  - name: installing dependencies in created folder
+    ansible.default.command: npm install
+    args:
+      chdir: /app
+
+  - name: copy configurations to systemd and enable those
+    ansible.builtin.copy:
+      src: catalogue.service
+      dest: /etc/systemd/system/catalogue.service   
+
+  - name: daemon reload for configurations to be active 
+    ansible.builtin.systemd_service:
+      daemon_reload: true
+
+  - name: enabling and restarting the service
+    ansible.builtin.service:
+      name: catalogue 
+      state: restarted
+      enabled: yes 
+
+# this DB part is mandatory because it should store the product info and display  
+  - name: coping mongo repo
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongodb.repo    
+
+  - name: download mongodb client # each of this can be called as tasks or modules.
+    ansible.builtin.dnf:
+      name: mongodb-org-shell
+      state: present   
+
+  - name: cheking wheather to load schema or not 
+    ansible.builtin.command: mongo --host <mongodb-server-ip> --quite --eval 'db = db.getSiblingDB("catalogue"); db.products.count()' 
+    register: count
+
+  - name: print the count
+    ansible.builtin.debug:
+      msg: "product count: {{count}}"   
+
+  - name: load products with condition
+    ansible.builtin.command: mongo --host <mongodb-server-ip> < /app/schema/catalogue.js
+    when: count.stdout == 0   
+
+  - name: restart catalogue
+    ansible.builtin.service:
+      name: catalogue
+      state: restarted               

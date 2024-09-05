@@ -16,4 +16,4 @@
       town: "kandukur"
       dist: "telangana"
     ansible.builtin.debug:
-      
+    # here ansible defaulty prints hello world  

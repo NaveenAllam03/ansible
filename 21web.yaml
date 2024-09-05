@@ -1,0 +1,48 @@
+---
+# yaml file to install and configure nginx
+
+- name: installing front end
+  hosts: web
+  become: yes
+  tasks:
+  - name: downloading nginx
+    ansible.builtin.dnf:
+      name: nginx
+      state: present
+
+  - name: starting and enabiling nginx
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: yes
+
+  - name: remove nginx default content
+    ansible.builtin.file:
+      path: /usr/share/nginx/html/
+      state: absent
+
+  - name: downloading contect from aws s3 bucket 
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip 
+      dest: /tmp
+
+  - name: unzipping the downloaded file 
+    ansible.builtin.unarchive:
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html/
+      remote_src: yes
+
+  - name: copying and configuring a file
+    ansible.builtin.copy:
+      src: roboshop.conf
+      dest: /etc/nginx/default.d/roboshop.conf 
+
+  - name: restart nginx
+    ansible.builtin.service:
+      state: restarted
+
+
+
+
+
+  
