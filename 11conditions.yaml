@@ -1,5 +1,5 @@
 ---
-
+# Ignore_errors: true --> This will ignore the error and runs the remaining tasks
 ###############
 # ansible.builtin.command acts a read command here
 # register - grabs the value and keeps it in avaliable variable.
@@ -26,4 +26,4 @@
   - name: task 4, creating user    
     ansible.builtin.user:        #use module
       user: roboshop
-    when: avaliable.rc != 0      # when condition, onlu condition in Ansible, yet very powerful
+    when: avaliable.rc != 0      # when condition, only condition in Ansible, yet very powerful

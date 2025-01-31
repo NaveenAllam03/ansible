@@ -14,3 +14,7 @@
   - name: check prompts
     ansible.builtin.debug:
       msg: "enter passwd {{US}}, enter passwd {{UP}}"
+
+
+## ansible -i inventory cart --list-hosts
+# ansible -i inventory catalogue --list-hosts

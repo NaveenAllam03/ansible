@@ -17,3 +17,12 @@
   - name: task3, check variables at play level
     ansible.builtin.debug:
       msg: "estd date is {{estd}}"             #calling variables  
+
+
+---
+- name: using variables
+  hosts: localhost
+  tasks:
+  - name: learning devops
+    ansible.builtin.debug:
+    msg: Hello       
